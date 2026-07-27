@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Agentic AI Chatbot</title>
+</head>
+
+<body>
+
+<h2>Agentic AI RAG Chatbot</h2>
+
+<input
+id="question"
+style="width:400px"
+placeholder="Ask a question">
+
+<button onclick="ask()">Ask</button>
+
+<pre id="result"></pre>
+
+<script>
+
+async function ask(){
+
+const question=document.getElementById("question").value;
+
+const response=await fetch("/chat",{
+
+method:"POST",
+
+headers:{
+"Content-Type":"application/json"
+},
+
+body:JSON.stringify({
+question
+})
+
+});
+
+const data=await response.json();
+
+document.getElementById("result").textContent=
+JSON.stringify(data,null,2);
+
+}
+
+</script>
+
+</body>
+</html>
